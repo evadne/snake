@@ -1,4 +1,4 @@
-<div class="snake-container d-flex flex-column align-items-center" phx-window-keydown="keydown">
+<div class="snake-container" phx-window-keydown="keydown">
   <h3 class="snake-score mt-4">SCORE: <%= @score %> / PLAYERS: <%= @count %></h3>
   <div class="snake-votes mt-2 mb-4 w-25 text-center">
     <div class="btn-group" role="group">
@@ -16,30 +16,19 @@
       </button>
     </div>
   </div>
-  <div class="snake-board" style={"width: #{@board.width * @size}px; height: #{@board.height * @size}px"}>
-    <%= for {x, y} <- @board.obstacles do %>
-      <div class="snake-cell snake-cell-obstacle"
-        style={"left: #{x * @size}px;
-          top: #{y * @size}px;
-          width: #{@size}px;
-          height: #{@size}px;"}
-      ></div>
-    <% end %>
-    <%= for {x, y} <- @board.cherries do %>
-      <div class="snake-cell snake-cell-cherry"
-        style={"left: #{x * @size}px;
-          top: #{y * @size}px;
-          width: #{@size}px;
-          height: #{@size}px;"}
-      ></div>
-    <% end %>
-    <%= for {x, y} <- @board.snake do %>
-      <div class="snake-cell snake-cell-snake"
-        style={"left: #{x * @size}px;
-          top: #{y * @size}px;
-          width: #{@size}px;
-          height: #{@size}px;"}
-      ></div>
-    <% end %>
+  <div class="snake-viewport">
+    <svg class="snake-board" viewBox={"-1 -1 #{@board.width + 2} #{@board.height + 2}"}>
+      <rect class="snake-board-boundary" x="-1" y="-1" width={@board.width + 2} height={@board.height + 2} />
+      <rect class="snake-board-background" x="0" y="0" width={@board.width} height={@board.height} />
+      <%= for {x, y} <- @board.obstacles do %>
+        <rect class="snake-cell snake-cell-obstacle" x={x} y={y} width="1" height="1" />
+      <% end %>
+      <%= for {x, y} <- @board.cherries do %>
+        <rect class="snake-cell snake-cell-cherry" x={x} y={y} width="1" height="1" />
+      <% end %>
+      <%= for {x, y} <- @board.snake do %>
+        <rect class="snake-cell snake-cell-snake" x={x} y={y} width="1" height="1" />
+      <% end %>
+    </svg>
   </div>
 </div>
