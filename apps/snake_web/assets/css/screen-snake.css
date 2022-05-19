@@ -1,0 +1,44 @@
+.snake-controls * {
+  color: #ffffff;
+}
+
+.snake-container{
+  width: 100%;
+  height: 100%;
+  background: gray;
+  position: absolute;
+  color: #ffffff;
+}
+
+.snake-board {
+  background: black;
+  position: relative;
+}
+
+.snake-board:after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  top: -10px;
+  right: -10px;
+  bottom: -10px;
+  left: -10px;
+  border: 10px solid white;
+}
+
+.snake-board .snake-cell {
+  display: block;
+  position: absolute;
+}
+
+.snake-board .snake-cell-cherry {
+  background: red;
+}
+
+.snake-board .snake-cell-snake {
+  background: yellow;
+}
+
+.snake-board .snake-cell-obstacle {
+  background: white;
+}

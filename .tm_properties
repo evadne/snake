@@ -1,0 +1,2 @@
+excludeDirectories = "{$excludeDirectories,deps,node_modules,_build,doc,priv/static,releases,cover,log}"
+excludeFiles = "{$excludeFiles,*.dump}"

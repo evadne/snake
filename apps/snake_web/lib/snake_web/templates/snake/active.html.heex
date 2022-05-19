@@ -1,0 +1,45 @@
+<div class="snake-container d-flex flex-column align-items-center" phx-window-keydown="keydown">
+  <h3 class="snake-score mt-4">SCORE: <%= @score %> / PLAYERS: <%= @count %></h3>
+  <div class="snake-votes mt-2 mb-4 w-25 text-center">
+    <div class="btn-group" role="group">
+      <button type="button" phx-click="vote-heading" phx-value-heading="up" class={"btn btn-lg btn-secondary #{(@voted_heading == :up) && "active" || ""}"}>
+        ↑<%= @votes[:up] || 0 %>
+      </button>
+      <button type="button" phx-click="vote-heading" phx-value-heading="down" class={"btn btn-lg btn-secondary #{(@voted_heading == :down) && "active" || ""}"}>
+        ↓<%= @votes[:down] || 0 %>
+      </button>
+      <button type="button" phx-click="vote-heading" phx-value-heading="left" class={"btn btn-lg btn-secondary #{(@voted_heading == :left) && "active" || ""}"}>
+        ←<%= @votes[:left] || 0 %>
+      </button>
+      <button type="button" phx-click="vote-heading" phx-value-heading="right" class={"btn btn-lg btn-secondary #{(@voted_heading == :right) && "active" || ""}"}>
+        →<%= @votes[:right] || 0 %>
+      </button>
+    </div>
+  </div>
+  <div class="snake-board" style={"width: #{@board.width * @size}px; height: #{@board.height * @size}px"}>
+    <%= for {x, y} <- @board.obstacles do %>
+      <div class="snake-cell snake-cell-obstacle"
+        style={"left: #{x * @size}px;
+          top: #{y * @size}px;
+          width: #{@size}px;
+          height: #{@size}px;"}
+      ></div>
+    <% end %>
+    <%= for {x, y} <- @board.cherries do %>
+      <div class="snake-cell snake-cell-cherry"
+        style={"left: #{x * @size}px;
+          top: #{y * @size}px;
+          width: #{@size}px;
+          height: #{@size}px;"}
+      ></div>
+    <% end %>
+    <%= for {x, y} <- @board.snake do %>
+      <div class="snake-cell snake-cell-snake"
+        style={"left: #{x * @size}px;
+          top: #{y * @size}px;
+          width: #{@size}px;
+          height: #{@size}px;"}
+      ></div>
+    <% end %>
+  </div>
+</div>

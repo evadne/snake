@@ -1,0 +1,24 @@
+<div class="d-flex w-100 h-100 flex-column align-items-center justify-content-center">
+  <div>
+    <h1>🐍🐍🐍 Multi-Snake 🐍🐍🐍</h1>
+  </div>
+  <div>
+    <%= if @latest_snake do %>
+      <% path = Routes.snake_path(@conn, :show, @latest_snake.id) %>
+      <%= link(to: path, class: "m-2 btn btn-primary") do %>
+        Join Latest Game
+      <% end %>
+    <% end %>
+
+    <% path = Routes.snake_path(@conn, :new) %>
+    <%= link(to: path, class: "m-2 btn btn-primary") do %>
+      New Game
+    <% end %>
+  </div>
+  <hr/>
+  <div class="text-center">
+    <a href="https://github.com/evadne/snake">
+      View Source
+    </a>
+  </div>
+</div>
