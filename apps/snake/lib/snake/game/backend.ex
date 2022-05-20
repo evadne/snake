@@ -7,7 +7,8 @@ defmodule Snake.Game.Backend do
 
   defmacro __using__(_) do
     quote do
-      @behaviour unquote(__MODULE__)
+      @behaviour Snake.Game.Backend
+      alias Snake.Game.Backend
       alias Snake.Game.State
     end
   end
